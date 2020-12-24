@@ -7,7 +7,7 @@ The CTC (Connectionist Temporal Classification) is commonly used in sequence to 
 # CTC Summary
 Define an Alphabet of size |L|, e.g. L = {a, b, c, ..., z} and add a special token called the blank token "-", which gives the full alphabet L'={a, b, c, ..., z, -}.
 
-Given a model which outputs a tensor of size (T, |L'|), we treat it as a character prediction per timestep. If we take the maximum score in each timestep, we get a naive (typically called "argmax") prediction of what the model predicted. Supported by this loss, the model is given great freedom in choosing where to place each character. The prediction "---h--i" is in a sense equal to the prediction "h----i-", since both predictions "collapse" into the same string: "hi".
+Given a model which outputs a tensor of size (T, |L'|), we treat it as a character prediction per timestep. If we take the maximum score in each timestep, we get a naive (typically called "argmax") assessment of what the model predicted. Supported by this loss, the model is given great freedom in choosing where to place each character. The prediction "---h--i" is in a sense equal to the prediction "h----i-", since both predictions "collapse" into the same string: "hi".
 
 The exact functionality of "collapse" (called B in the original paper), is: "simply removing all blanks and repeated labels ... (e.g. B("a−ab−") = B("−aa−−abb") = aab)"
 
@@ -18,7 +18,7 @@ In principle, we wish to maximize the probability of the label, treating the mat
 ![Alt Text](https://raw.githubusercontent.com/yehudabab/NumpyCTC/main/images/f3.PNG)
 (l - gt label, x - matrix, pi - path in the matrix, B - collapse function)
 
-In order to calculate this expression, and to derive gradients from it, the paper employs a forwards-backwards algorithm which is implemented in the repository. Specifically, two matrices Alpha and Beta are calculated with dynamic programming:
+In order to calculate this expression, and to derive gradients from it, the paper employs a forwards-backwards algorithm which is implemented in this repository. Specifically, two matrices Alpha and Beta are calculated with dynamic programming:
 
 ![Alt Text](https://raw.githubusercontent.com/yehudabab/NumpyCTC/main/images/f5.PNG)
 ![Alt Text](https://raw.githubusercontent.com/yehudabab/NumpyCTC/main/images/f9.PNG)
