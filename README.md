@@ -1,2 +1,2 @@
 # NumpyCTC
-Numpy implementation of the CTC loss
+Numpy implementation of the CTC loss.
